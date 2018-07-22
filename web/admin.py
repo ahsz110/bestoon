@@ -7,3 +7,4 @@ from .models import Expense, Income
 
 admin.site.register(Expense)
 admin.site.register(Income)
+
