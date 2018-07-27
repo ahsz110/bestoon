@@ -13,7 +13,6 @@ from datetime import datetime
 def submit_expense(request):
     '''user submits an expense'''
     #TODO: any thing...
-    print request.POST
     this_token = request.POST.get('token', '')
     this_user = User.objects.filter(token__token=this_token).get() #useri ke dar jadval token, meghdare tokenesh barabar ba this_token ast.
     if 'date' not in request.POST:
@@ -29,7 +28,6 @@ def submit_expense(request):
 def submit_income(request):
     '''user submits an income'''
     #TODO: any thing...
-    print request.POST
     this_token = request.POST.get('token', '')
     this_user = User.objects.filter(token__token=this_token).get() #useri ke dar jadval token, meghdare tokenesh barabar ba this_token ast.
     if 'date' not in request.POST:
