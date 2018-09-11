@@ -97,6 +97,17 @@ def index(request):
     context = {}
     return render(request, 'index.html', context)
 
+@csrf_exempt
+def generalstat(request):
+    this_token = request.POST['token']
+    this_user = User.objects.filter(token__token=this_token)
+    income = Income.objects.filter(user=this_user).aggregate(Count('amount'), Sum('amount'))
+    expense = Expense.objects.filter(user=this_user).aggregate(Count('amount'), Sum('amount'))
+    context = {}
+    context['income'] = income
+    context['expense'] = expense
+    return JsonResponse(context, encoder=JSONEncoder)
+
 
 @csrf_exempt
 def submit_expense(request):
